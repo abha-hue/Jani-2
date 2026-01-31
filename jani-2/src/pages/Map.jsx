@@ -53,7 +53,7 @@ const Map = () => {
                     <div className="flex-[0_0_60%] h-full">
                         <div className="h-full rounded-2xl overflow-hidden border-4 shadow-2xl" style={{ borderColor: ACCENT }}>
                             <MapContainer
-                                center={[51.505, -0.09]}
+                                center={[0, 0]}
                                 zoom={3}
                                 scrollWheelZoom={true}
                                 style={{ height: "100%", width: "100%" }}
