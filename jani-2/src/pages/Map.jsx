@@ -31,23 +31,23 @@ const Map = () => {
     return (
         <div className="max-h-screen p-6" style={{ backgroundColor: BG_DARK, color: TEXT_LIGHT }}>
             <style>{`
-                .custom-scrollbar::-webkit-scrollbar {
-                    width: 8px;
-                }
-                .custom-scrollbar::-webkit-scrollbar-track {
-                    background: rgba(18, 53, 36, 0.5);
-                    border-radius: inherit;
-                    overflow: hidden;
-                }
-                .custom-scrollbar::-webkit-scrollbar-thumb {
-                    background: ${ACCENT};
-                    border-radius: inherit;
-                    overflow: hidden;
-                }
-                .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-                    background: #6d8c3a;
-                }
-            `}</style>
+    .custom-scrollbar {
+        scrollbar-width: thin;
+        scrollbar-color: ${ACCENT} transparent;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar {
+        width: 8px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: ${ACCENT};
+        border-radius: 10px;
+    }
+`}</style>
+
             <div className="max-w-[1600px] mx-auto h-full">
                 <div className="flex gap-6 h-[calc(100vh-8rem)]">
                     <div className="flex-[0_0_60%] h-full">
@@ -83,7 +83,7 @@ const Map = () => {
                         </div>
                     </div>
                     <div
-                        className="flex-[0_0_40%] overflow-y-auto rounded-2xl p-8 shadow-2xl border-2 custom-scrollbar"
+                        className="flex-[0_0_40%] h-full overflow-y-auto rounded-2xl p-8 shadow-2xl border-2 custom-scrollbar"
                         style={{
                             backgroundColor: ACTIVE_BG,
                             borderColor: ACCENT
