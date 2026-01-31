@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  # Production build with nginx
+  jani-prod:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: jani-app
+    ports:
+      - "8080:80"
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+
+  # Development server with hot-reload
+  jani-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: jani-dev
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./src:/app/src
+      - ./public:/app/public
+      - /app/node_modules
+    env_file:
+      - .env
+    restart: unless-stopped
+    stdin_open: true
+    tty: true
