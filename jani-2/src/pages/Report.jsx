@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { createClient } from '@supabase/supabase-js';
+import { useQueryClient } from "@tanstack/react-query";
 
 const supabase = createClient(
     import.meta.env.VITE_SUPABASE_URL,
@@ -13,6 +14,7 @@ const fadeInUp = {
 };
 
 export default function Report() {
+    const queryClient = useQueryClient();
     const [image, setImage] = useState(null);
     const [preview, setPreview] = useState(null);
     const [description, setDescription] = useState("");
@@ -87,6 +89,8 @@ export default function Report() {
                         .from("jani-images")
                         .upload(filePath, image)
 
+
+
                     if (uploadError) throw uploadError
 
                     const reportData = {
@@ -105,6 +109,7 @@ export default function Report() {
                             public_image_url: reportData.image,
                             description: reportData.description,
                         })
+                    queryClient.invalidateQueries({ queryKey: ["reports"] });
                     if (dbError) throw dbError
 
                     console.log("Report Submitted Successfully:", reportData);

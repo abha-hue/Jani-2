@@ -7,6 +7,7 @@ import Home from "./pages/Home";
 import Report from "./pages/Report";
 import Map from "./pages/Map";
 
+
 const MainLayout = () => (
   <>
     <Navigation />
