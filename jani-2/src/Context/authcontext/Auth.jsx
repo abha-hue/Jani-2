@@ -25,7 +25,7 @@ export const AuthProvider = ({ children }) => {
       setLoading(false);
     });
 
-    // cleanup listener when unmounts
+
     return () => unsubscribe();
   }, []);
 

@@ -7,7 +7,7 @@ const Navigation = () => {
     const navigate = useNavigate();
     const { userLogged, user } = useAuth();
 
-    // Color palette
+
     const BG_DARK = "#123524";
     const TEXT_LIGHT = "#EFE3C2";
     const ACCENT = "#85A947";
@@ -39,7 +39,7 @@ const Navigation = () => {
                 boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)'
             }}
         >
-            {/* LOGO/BRAND */}
+
             <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -51,7 +51,7 @@ const Navigation = () => {
                 </Link>
             </motion.div>
 
-            {/* LEFT LINKS */}
+
             <div className="flex gap-2">
                 {navigationLinks.map((link, index) => (
                     <motion.div
@@ -80,7 +80,7 @@ const Navigation = () => {
                 ))}
             </div>
 
-            {/* RIGHT SIDE - AUTH BUTTONS */}
+
             <motion.div
                 className="ml-auto flex items-center gap-4"
                 initial={{ opacity: 0, x: 20 }}

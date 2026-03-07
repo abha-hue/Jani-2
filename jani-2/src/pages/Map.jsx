@@ -1,5 +1,6 @@
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
+import L from 'leaflet';
 import { fetchReports } from "./supabase/supabase";
 import { useQuery } from "@tanstack/react-query";
 import { createClient } from '@supabase/supabase-js';
@@ -15,13 +16,13 @@ const Map = () => {
     const ACCENT = "#85A947";
     const ACTIVE_BG = "#3E7B27";
 
-    // Fetch reports using React Query
+
     const { data: reports = [], isLoading, error, isFetching } = useQuery({
         queryKey: ["reports"],
         queryFn: fetchReports,
     });
 
-    // Handle loading state
+
     if (isLoading) {
         return (
             <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: BG_DARK, color: TEXT_LIGHT }}>
@@ -33,7 +34,7 @@ const Map = () => {
         );
     }
 
-    // Handle error state
+
     if (error) {
         return (
             <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: BG_DARK, color: TEXT_LIGHT }}>
@@ -63,9 +64,25 @@ const Map = () => {
         background: ${ACCENT};
         border-radius: 10px;
     }
+
+
+    .custom-marker-icon {
+        background: transparent !important;
+        border: none !important;
+    }
+
+    .leaflet-popup-content-wrapper {
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    }
+
+    .leaflet-popup-tip {
+        background: white;
+    }
 `}</style>
 
-            {/* Refetching indicator */}
+
             {isFetching && !isLoading && (
                 <div className="fixed top-4 right-4 z-50 bg-green-600 text-white px-4 py-2 rounded-full shadow-lg flex items-center gap-2">
                     <div className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent"></div>
@@ -87,23 +104,77 @@ const Map = () => {
                                     attribution='&copy; OpenStreetMap contributors'
                                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                                 />
-                                {reports.map((report) => (
-                                    <Marker key={report.id} position={[report.latitude, report.longitude]}>
-                                        <Popup>
-                                            <img
-                                                src={
-                                                    supabase.storage
-                                                        .from("jani-images")
-                                                        .getPublicUrl(report.public_image_url)
-                                                        .data.publicUrl
-                                                }
-                                                alt="Report"
-                                                style={{ width: "100%", borderRadius: "8px" }}
-                                            />
-                                            <p>{report.description}</p>
-                                        </Popup>
-                                    </Marker>
-                                ))}
+                                {reports.map((report) => {
+                                    const imageUrl = supabase.storage
+                                        .from("jani-images")
+                                        .getPublicUrl(report.public_image_url)
+                                        .data.publicUrl;
+
+                                    const customIcon = L.divIcon({
+                                        html: `
+                                            <div style="
+                                                width: 60px;
+                                                height: 60px;
+                                                border-radius: 50%;
+                                                overflow: hidden;
+                                                border: 3px solid #85A947;
+                                                box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+                                                background: white;
+                                                cursor: pointer;
+                                                transition: transform 0.2s;
+                                            "
+                                            onmouseover="this.style.transform='scale(1.1)'"
+                                            onmouseout="this.style.transform='scale(1)'"
+                                            >
+                                                <img 
+                                                    src="${imageUrl}" 
+                                                    alt="Pollution" 
+                                                    style="
+                                                        width: 100%;
+                                                        height: 100%;
+                                                        object-fit: cover;
+                                                    "
+                                                />
+                                            </div>
+                                        `,
+                                        className: 'custom-marker-icon',
+                                        iconSize: [60, 60],
+                                        iconAnchor: [30, 30],
+                                        popupAnchor: [0, -30]
+                                    });
+
+                                    return (
+                                        <Marker
+                                            key={report.id}
+                                            position={[report.latitude, report.longitude]}
+                                            icon={customIcon}
+                                        >
+                                            <Popup>
+                                                <div style={{ minWidth: '200px' }}>
+                                                    <h3 style={{
+                                                        margin: '0 0 8px 0',
+                                                        color: '#123524',
+                                                        fontSize: '16px',
+                                                        fontWeight: 'bold'
+                                                    }}>
+                                                        {report.pollution_type || 'Pollution Report'}
+                                                    </h3>
+                                                    <p style={{
+                                                        margin: '0 0 8px 0',
+                                                        color: '#555',
+                                                        fontSize: '14px',
+                                                        lineHeight: '1.4'
+                                                    }}>
+                                                        {report.description}
+                                                    </p>
+                                                    <small style={{ color: '#888', fontSize: '12px' }}>
+                                                        {new Date(report.created_at).toLocaleDateString()}
+                                                    </small>
+                                                </div>
+                                            </Popup>
+                                        </Marker>
+                                    );
+                                })}
                             </MapContainer>
                         </div>
                     </div>

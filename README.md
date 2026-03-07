@@ -247,9 +247,6 @@ Ensure you're passing environment variables correctly:
 docker run -p 5173:5173 --env-file .env jani
 ```
 
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## 🙏 Acknowledgments
 
@@ -258,12 +255,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **Firebase** - For authentication services
 - **Framer Motion** - For beautiful animations
 - **Our Community** - For making environmental awareness possible
-
-## 📞 Contact & Support
-
-- **Website**: [jani-app.com](https://jani-app.com)
-- **Email**: support@jani-app.com
-- **Twitter**: [@JANIapp](https://twitter.com/JANIapp)
 
 ## 🌟 Star Us!
 

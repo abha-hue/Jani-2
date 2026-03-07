@@ -26,7 +26,7 @@ export default function About() {
   const { scrollYProgress } = useScroll();
   const backgroundY = useTransform(scrollYProgress, [0, 1], ['0%', '20%']);
 
-  // Colors (consistent with Home.jsx)
+
   const bgDark = "#123524";
   const accentDark = "#3E7B27";
   const accentLight = "#85A947";
@@ -35,7 +35,7 @@ export default function About() {
   return (
     <div style={{ backgroundColor: bgDark, color: textLight }} className="min-h-screen font-sans relative overflow-hidden">
 
-      {/* Animated Background Elements */}
+
       <motion.div
         className="absolute inset-0 z-0 pointer-events-none opacity-30"
         style={{ y: backgroundY }}
@@ -44,7 +44,7 @@ export default function About() {
         <div className="absolute top-[30%] right-[-10%] w-[35vw] h-[35vw] bg-[#85A947] rounded-full mix-blend-multiply filter blur-[100px] opacity-20 animate-blob animation-delay-2000"></div>
       </motion.div>
 
-      {/* 1. Mission Statement */}
+
       <section className="container mx-auto px-6 py-24 text-center relative z-10">
         <motion.div
           initial="hidden"
@@ -74,7 +74,7 @@ export default function About() {
         </motion.div>
       </section>
 
-      {/* 2. Why JANI Exists (The Problem) */}
+
       <section className="bg-[#0F2A1C] py-20 relative z-10">
         <div className="container mx-auto px-6">
           <motion.div
@@ -120,7 +120,7 @@ export default function About() {
         </div>
       </section>
 
-      {/* 3. What JANI Does (Your Solution) */}
+
       <section className="container mx-auto px-6 py-20 relative z-10">
         <motion.div
           initial="hidden"
@@ -165,7 +165,7 @@ export default function About() {
         </motion.div>
       </section>
 
-      {/* 4. How JANI Works */}
+
       <section className="bg-[#0F2A1C] py-20 relative z-10">
         <div className="container mx-auto px-6 text-center">
           <motion.h2
@@ -213,7 +213,7 @@ export default function About() {
         </div>
       </section>
 
-      {/* 5. Impact Section */}
+
       <section className="container mx-auto px-6 py-20 relative z-10">
         <motion.div
           className="max-w-5xl mx-auto glass-dark p-10 rounded-3xl border border-[#85A947]/30 shadow-2xl"
@@ -250,7 +250,7 @@ export default function About() {
         </motion.div>
       </section>
 
-      {/* 7. Our Values */}
+
       <section className="bg-[#0F2A1C] py-20 relative z-10">
         <div className="container mx-auto px-6 text-center">
           <motion.h2
@@ -289,7 +289,7 @@ export default function About() {
         </div>
       </section>
 
-      {/* 8. Future Goals */}
+
       <section className="container mx-auto px-6 py-20 relative z-10">
         <motion.h2
           className="text-4xl font-black mb-14 text-center gradient-text"
@@ -329,7 +329,7 @@ export default function About() {
         </motion.div>
       </section>
 
-      {/* 9. Call to Action */}
+
       <section className="py-24 text-center bg-gradient-to-t from-[#0F2A1C] to-[#123524] relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}

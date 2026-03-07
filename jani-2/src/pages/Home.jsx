@@ -1,8 +1,8 @@
-// src/components/Home.jsx
+
 import React, { useState } from "react";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 
-// Enhanced animation variants
+
 const fadeInUp = {
   hidden: { opacity: 0, y: 40 },
   visible: (delay = 0) => ({
@@ -32,7 +32,7 @@ const scaleIn = {
   }),
 };
 
-// Accordion content variants
+
 const contentVariants = {
   collapsed: {
     opacity: 0,
@@ -97,7 +97,7 @@ export default function Home() {
     },
   ];
 
-  // Colors
+
   const bgDark = "#123524";
   const accentDark = "#3E7B27";
   const accentLight = "#85A947";
@@ -106,10 +106,10 @@ export default function Home() {
   return (
     <div style={{ backgroundColor: bgDark, color: textLight }} className="min-h-screen font-sans">
 
-      {/* HERO */}
+
       <section className="relative w-full min-h-[92vh] flex flex-col justify-center items-center text-center px-6 overflow-hidden">
 
-        {/* Animated Background Elements */}
+
         <motion.div
           className="absolute inset-0 z-0 overflow-hidden pointer-events-none"
           style={{ y: backgroundY }}
@@ -119,7 +119,7 @@ export default function Home() {
           <div className="absolute bottom-[-20%] left-[20%] w-[50vw] h-[50vw] bg-[#123524] rounded-full mix-blend-multiply filter blur-[128px] opacity-30 animate-blob animation-delay-4000"></div>
         </motion.div>
 
-        {/* Content Container */}
+
         <div className="relative z-10 max-w-5xl mx-auto">
           <motion.div
             variants={fadeInUp}
@@ -187,7 +187,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* FEATURES */}
+
       <section className="container mx-auto px-6 py-20 relative z-10">
         <motion.h2
           initial={{ opacity: 0, y: 30 }}
@@ -235,7 +235,7 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* FAQ */}
+
       <section style={{ backgroundColor: "#0F2A1C" }} className="py-20 relative z-10">
         <div className="container mx-auto px-6">
           <motion.h2
@@ -301,7 +301,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA */}
+
       <section className="container mx-auto px-6 py-24 relative z-10">
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}

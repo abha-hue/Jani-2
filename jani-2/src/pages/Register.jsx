@@ -13,7 +13,7 @@ const Register = () => {
     const [loading, setLoading] = useState(false);
 
     if (userLogged) {
-        // If already logged in, redirect to home
+
         return <Navigate to="/" replace />;
     }
 

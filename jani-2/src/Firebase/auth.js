@@ -26,5 +26,5 @@ export const doSignOut = async () => {
 };
 
 
-//update pass and email verification allso possibe aise hi functions bante hai same same
+
 
